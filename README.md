@@ -38,7 +38,7 @@ The desktop app displays the status in the system tray and can notify the user w
 
 ## ESP32 and IR Sensor
 
-[cabling scheme]
+![esp32_cabling_scheme](https://github.com/user-attachments/assets/cd905866-189e-49e6-a8f5-1b1f170e8549)
 
 For this part, I used an ESP32 Devkit 30 pins. Just cable everything together and flash the code with Arduino IDE. 
 
