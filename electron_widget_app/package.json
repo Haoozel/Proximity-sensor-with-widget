@@ -36,6 +36,10 @@
         "deb"
       ],
       "icon": "build/icon.icon"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "build/icon.icns"
     }
   },
   "devDependencies": {
