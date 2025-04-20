@@ -103,7 +103,7 @@ function updateTrayMenu(status) {
   ]);
 
   tray.setContextMenu(contextMenu);
-  tray.setToolTip(`WC : ${translateStatus(status)} | IP : ${apiIp}`);
+  tray.setToolTip(`Sensor : ${translateStatus(status)} | IP : ${apiIp}`);
 }
 
 function handleDisconnected() {
