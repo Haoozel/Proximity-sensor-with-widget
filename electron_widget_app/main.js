@@ -71,8 +71,8 @@ function openIpConfigWindow() {
 
 function updateTrayMenu(status) {
   const contextMenu = Menu.buildFromTemplate([
-    { label: `État : ${translateStatus(status)}`, enabled: false },
-    { label: `IP serveur : ${apiIp}`, enabled: false },
+    { label: `Status : ${translateStatus(status)}`, enabled: false },
+    { label: `Server IP : ${apiIp}`, enabled: false },
     { type: 'separator' },
 	{
 	  label: notifyOnceWhenFree
