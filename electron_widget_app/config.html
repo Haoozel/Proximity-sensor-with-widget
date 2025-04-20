@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IP Configuration</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 8px 16px;
+    }
+  </style>
+</head>
+<body>
+  <h3>Configure api server IP address</h3>
+  <input id="ipInput" placeholder="Ex: 192.168.1.100" />
+  <button onclick="save()">Save and quit</button>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+
+    ipcRenderer.invoke('getCurrentIp').then(ip => {
+      document.getElementById('ipInput').value = ip;
+    });
+
+    function save() {
+      const ip = document.getElementById('ipInput').value;
+      ipcRenderer.send('saveIp', ip);
+      window.close();
+    }
+  </script>
+</body>
+</html>
