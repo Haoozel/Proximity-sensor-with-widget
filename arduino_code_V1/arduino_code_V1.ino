@@ -4,12 +4,12 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
-// Configuration Wi-Fi
+// Wi-Fi Configuration 
 const char* ssid = "";
 const char* password = "";
 
-// Adresse du serveur API
-const char* serverUrl = "http://x.x.x.x:5000/api/status"; // À adapter
+// API Server Address
+const char* serverUrl = "http://x.x.x.x:5000/api/status";
 
 // Pins
 #define IR_SENSOR_PIN 34
@@ -26,9 +26,9 @@ void setup() {
   Wire.begin(21, 22);
   pinMode(IR_SENSOR_PIN, INPUT);
 
-  // Init écran OLED
+  // Init OLED screen
   if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
-    Serial.println(F("Échec OLED"));
+    Serial.println(F("OLED failed"));
     while (true);
   }
 
@@ -36,10 +36,10 @@ void setup() {
   display.setTextSize(1);
   display.setTextColor(SSD1306_WHITE);
   display.setCursor(0, 0);
-  display.println("Connexion Wi-Fi...");
+  display.println("Connecting to Wi-Fi...");
   display.display();
 
-  // Connexion Wi-Fi
+  // Wi-Fi Connexion 
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -48,7 +48,7 @@ void setup() {
 
   display.clearDisplay();
   display.setCursor(0, 0);
-  display.println("Connecté !");
+  display.println("Connected !");
   display.display();
   delay(1000);
 }
@@ -62,22 +62,22 @@ void loop() {
 
   unsigned long currentTime = millis();
 
-  // Envoie s’il y a un changement ou si le délai est passé
+  // Send if change occured or if delay passed
   if (status != lastStatus || currentTime - lastSendTime >= sendInterval) {
     sendStatusToServer(status);
     lastStatus = status;
     lastSendTime = currentTime;
 
-    // Affichage OLED
+    // OLED display
     display.clearDisplay();
     display.setTextSize(2);
     display.setCursor(0, 20);
-    display.println("Etat:");
+    display.println("State:");
     display.println(status);
     display.display();
   }
 
-  delay(200); // boucle rapide pour lecture capteur
+  delay(200); // quick loop for display
 }
 
 
@@ -90,10 +90,10 @@ void sendStatusToServer(String status) {
     String json = "{\"status\":\"" + status + "\"}";
     int httpResponseCode = http.POST(json);
 
-    Serial.print("Code réponse: ");
+    Serial.print("Answer code ");
     Serial.println(httpResponseCode);
     http.end();
   } else {
-    Serial.println("Non connecté au WiFi");
+    Serial.println("Wi-Fi not connected.");
   }
 }
