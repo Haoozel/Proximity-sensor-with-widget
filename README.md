@@ -91,4 +91,8 @@ npm build:win/linux/mac
 
 If you need further help to customize it, you can contact me directly :)
 
+# Roadmap
 
+- Create generic app packages - WIP coming soon
+- Android app
+- More features for the webpage (countdown, queue system...)
